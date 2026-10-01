@@ -1,0 +1,1544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Freshly88 — newly created GitHub repos</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script>
+/* apply theme before paint to avoid flash */
+(function(){
+  try{
+    var saved = localStorage.getItem('freshly88_theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+  }catch(e){
+    document.documentElement.setAttribute('data-theme','dark');
+  }
+})();
+</script>
+
+<style>
+/* ============================================================
+   theme tokens — dark (default)
+   ============================================================ */
+:root,
+:root[data-theme="dark"]{
+  --bg:#15111d;
+  --bg2:#191422;
+  --panel:#1e1828;
+  --panel2:#241d32;
+  --panel3:#2b2340;
+  --border:#332a45;
+  --border2:#453a5c;
+  --text:#e9e3ef;
+  --muted:#9b90ad;
+  --muted2:#6b6180;
+  --accent:#b09ac9;
+  --accent-hover:#cbb8dd;
+  --accent-dim:#5d4e78;
+  --accent-soft:#d3c2e3;
+  --green:#a3c9a3;
+  --warn:#d4a5b8;
+  --glow:rgba(140,110,180,.10);
+  --shadow:0 12px 32px -20px rgba(0,0,0,.7);
+  --shadow-lg:0 24px 60px -20px rgba(0,0,0,.7);
+  --sk1:#1e1828;
+  --sk2:#28203a;
+  --grain-opacity:.035;
+  --grain-blend:overlay;
+  --scroll-track:#15111d;
+  --scroll-thumb:#3a2f4d;
+  --scroll-thumb-hover:#4d3f66;
+  --select-arrow:'%239b90ad';
+}
+
+/* ============================================================
+   theme tokens — light (vintage cream + dusty purple)
+   ============================================================ */
+:root[data-theme="light"]{
+  --bg:#f6f2ec;
+  --bg2:#f1ebe2;
+  --panel:#fbf8f3;
+  --panel2:#f4efe6;
+  --panel3:#ebe4d8;
+  --border:#e0d6c6;
+  --border2:#c9bca6;
+  --text:#2c2438;
+  --muted:#6b6076;
+  --muted2:#958a9e;
+  --accent:#7a5f9a;
+  --accent-hover:#5f4878;
+  --accent-dim:#c9b8dc;
+  --accent-soft:#5a4573;
+  --green:#5f8a5f;
+  --warn:#a56b83;
+  --glow:rgba(122,95,154,.08);
+  --shadow:0 12px 32px -22px rgba(90,70,110,.28);
+  --shadow-lg:0 24px 60px -22px rgba(90,70,110,.32);
+  --sk1:#f1ebe2;
+  --sk2:#e6ddce;
+  --grain-opacity:.05;
+  --grain-blend:multiply;
+  --scroll-track:#f1ebe2;
+  --scroll-thumb:#d4c8b5;
+  --scroll-thumb-hover:#bfae94;
+  --select-arrow:'%236b6076';
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+
+html{
+  scrollbar-color:var(--scroll-thumb) var(--scroll-track);
+  scrollbar-width:thin;
+}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--scroll-track)}
+::-webkit-scrollbar-thumb{
+  background:var(--scroll-thumb);
+  border-radius:6px;
+  border:2px solid var(--scroll-track);
+}
+::-webkit-scrollbar-thumb:hover{background:var(--scroll-thumb-hover)}
+
+body{
+  background:
+    radial-gradient(1100px 700px at 50% -15%, var(--glow), transparent 65%),
+    radial-gradient(900px 600px at 85% 105%, var(--glow), transparent 65%),
+    var(--bg);
+  background-attachment:fixed;
+  color:var(--text);
+  font:14.5px/1.75 var(--sans);
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  letter-spacing:.1px;
+  min-height:100vh;
+  transition:
+    background-color .5s ease,
+    color .5s ease;
+}
+
+/* very faint vintage grain */
+body::before{
+  content:'';
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  opacity:var(--grain-opacity);
+  mix-blend-mode:var(--grain-blend);
+  transition:opacity .5s ease;
+}
+
+a{color:var(--accent-soft);text-decoration:none;transition:color .3s ease}
+a:hover{color:var(--accent-hover)}
+
+::selection{background:rgba(160,130,200,.32);color:var(--text)}
+
+:focus-visible{
+  outline:1.5px solid var(--accent);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+/* ============================================================
+   disclaimer
+   ============================================================ */
+.disclaimer{
+  position:relative;z-index:1;
+  max-width:920px;
+  margin:36px auto 0;
+  padding:26px 30px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:var(--panel);
+  box-shadow:0 1px 0 rgba(200,175,230,.03) inset;
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:12.5px;
+  line-height:1.95;
+  color:var(--muted);
+  letter-spacing:.15px;
+  transition:
+    background-color .5s ease,
+    border-color .5s ease,
+    color .5s ease;
+}
+.disclaimer strong{
+  display:block;
+  font-family:var(--display);
+  font-style:italic;
+  color:var(--accent-soft);
+  font-weight:400;
+  font-size:14px;
+  letter-spacing:.3px;
+  margin-bottom:10px;
+}
+
+/* ============================================================
+   header
+   ============================================================ */
+header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter:blur(18px) saturate(1.2);
+  -webkit-backdrop-filter:blur(18px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  padding:14px 22px;
+  transition:
+    background-color .5s ease,
+    border-color .5s ease;
+}
+.hrow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  max-width:1200px;
+  margin:0 auto;
+}
+
+/* ---------- brand + spinning globe ---------- */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-family:var(--display);
+  font-size:17px;
+  font-weight:500;
+  letter-spacing:.2px;
+  white-space:nowrap;
+  margin:0 14px 0 0;
+  color:var(--text);
+}
+.brand .mark{
+  color:var(--accent-soft);
+  font-style:italic;
+  font-weight:400;
+}
+.brand em{
+  font-family:var(--sans);
+  font-style:normal;
+  font-weight:300;
+  font-size:10.5px;
+  color:var(--muted2);
+  margin-left:8px;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+}
+
+.globe{
+  width:36px;height:36px;
+  flex:none;
+  display:grid;
+  place-items:center;
+  position:relative;
+}
+.globe svg{
+  width:100%;height:100%;
+  display:block;
+  overflow:visible;
+}
+.globe .g-ring{
+  fill:none;
+  stroke:var(--accent);
+  stroke-width:1.2;
+  opacity:.55;
+}
+.globe .g-lat ellipse{
+  fill:none;
+  stroke:var(--accent);
+  stroke-width:.8;
+  opacity:.28;
+}
+.globe .g-mer ellipse{
+  fill:none;
+  stroke:var(--accent-soft);
+  stroke-width:1;
+  opacity:.55;
+  vector-effect:non-scaling-stroke;
+  transform-box:fill-box;
+  transform-origin:50% 50%;
+  animation:merSpin 9s ease-in-out infinite;
+}
+@keyframes merSpin{
+  0%,50%,100%{transform:scaleX(.03);opacity:.15}
+  25%,75%{transform:scaleX(1);opacity:.65}
+}
+
+/* ---------- controls ---------- */
+select,input,button{
+  font-family:var(--sans);
+  font-size:12.5px;
+  letter-spacing:.2px;
+  background:var(--panel);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:9px 13px;
+  outline:none;
+  transition:
+    border-color .3s ease,
+    background-color .5s ease,
+    color .3s ease,
+    box-shadow .3s ease;
+}
+select{
+  appearance:none;
+  -webkit-appearance:none;
+  padding-right:32px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239b90ad' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 12px center;
+  background-size:11px;
+  cursor:pointer;
+}
+:root[data-theme="light"] select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6076' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+input::placeholder{color:var(--muted2);opacity:.85}
+select:hover,input:hover{
+  border-color:var(--border2);
+  background:var(--panel2);
+}
+input:focus,select:focus{
+  border-color:var(--accent-dim);
+  background:var(--panel2);
+  box-shadow:0 0 0 3px var(--glow);
+}
+
+button{
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:500;
+}
+button:hover{
+  background:var(--panel2);
+  border-color:var(--border2);
+  color:var(--text);
+}
+button:active{transform:translateY(.5px)}
+
+button.primary{
+  background:linear-gradient(180deg,#7a689a 0%,#6a5a86 100%);
+  border-color:#8875a8;
+  color:#f4eff8;
+  font-weight:500;
+  letter-spacing:.3px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 1px 2px rgba(0,0,0,.18);
+}
+button.primary:hover{
+  background:linear-gradient(180deg,#8875a8 0%,#786694 100%);
+  border-color:#9b87bd;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.14),
+    0 2px 6px rgba(0,0,0,.22);
+}
+:root[data-theme="light"] button.primary{
+  background:linear-gradient(180deg,#7a5f9a 0%,#6a5088 100%);
+  border-color:#6a5088;
+  color:#fbf8f3;
+}
+:root[data-theme="light"] button.primary:hover{
+  background:linear-gradient(180deg,#8a6fab 0%,#7a5f9a 100%);
+  border-color:#7a5f9a;
+}
+button:disabled{opacity:.42;cursor:not-allowed}
+button:disabled:hover{transform:none;background:var(--panel);border-color:var(--border)}
+button.icon-only{padding:9px 11px}
+
+button.primary.loading svg{animation:spin 1.1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- theme toggle ---------- */
+.theme-toggle{
+  padding:9px 11px;
+  position:relative;
+  overflow:hidden;
+}
+.theme-toggle svg{
+  width:15px;
+  height:15px;
+  display:block;
+  transition:transform .5s cubic-bezier(.4,.6,.3,1), opacity .35s ease;
+  transform-origin:center;
+}
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon{
+  position:absolute;
+  top:50%;left:50%;
+  margin-top:-7.5px;
+  margin-left:-7.5px;
+}
+:root[data-theme="dark"] .theme-toggle .icon-sun{
+  opacity:0;
+  transform:rotate(-90deg) scale(.55);
+}
+:root[data-theme="dark"] .theme-toggle .icon-moon{
+  opacity:1;
+  transform:rotate(0) scale(1);
+}
+:root[data-theme="light"] .theme-toggle .icon-sun{
+  opacity:1;
+  transform:rotate(0) scale(1);
+}
+:root[data-theme="light"] .theme-toggle .icon-moon{
+  opacity:0;
+  transform:rotate(90deg) scale(.55);
+}
+.theme-toggle::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:radial-gradient(circle at center, var(--glow), transparent 70%);
+  opacity:0;
+  transition:opacity .4s ease;
+  pointer-events:none;
+}
+.theme-toggle:hover::before{opacity:1}
+
+/* ============================================================
+   main
+   ============================================================ */
+main{
+  position:relative;
+  z-index:1;
+  max-width:1200px;
+  margin:0 auto;
+  padding:26px 22px 8px;
+}
+.bar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+  transition:border-color .5s ease;
+}
+.status{
+  font-family:var(--sans);
+  font-size:12px;
+  font-weight:300;
+  letter-spacing:.4px;
+  color:var(--muted);
+}
+.status b{
+  color:var(--accent-soft);
+  font-weight:500;
+}
+.status .dot{
+  display:inline-block;
+  width:3px;height:3px;
+  border-radius:50%;
+  background:var(--accent-dim);
+  margin:0 10px;
+  vertical-align:middle;
+}
+
+#list{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(330px,1fr));
+  gap:18px;
+}
+
+/* ============================================================
+   card
+   ============================================================ */
+.card{
+  position:relative;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  transition:
+    border-color .4s ease,
+    background-color .5s ease,
+    transform .4s cubic-bezier(.2,.8,.3,1),
+    box-shadow .4s ease;
+  animation:fadeUp .55s cubic-bezier(.2,.8,.3,1) both;
+}
+.card:hover{
+  border-color:var(--border2);
+  background:var(--panel2);
+  transform:translateY(-2px);
+  box-shadow:var(--shadow);
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+
+.top{display:flex;gap:13px;align-items:flex-start}
+.top img{
+  width:38px;height:38px;
+  border-radius:9px;
+  flex:none;
+  background:var(--panel3);
+  border:1px solid var(--border);
+  transition:border-color .4s ease, background-color .5s ease;
+}
+.card:hover .top img{
+  border-color:var(--border2);
+}
+.info{min-width:0;flex:1}
+.name{
+  font-family:var(--display);
+  font-weight:500;
+  font-size:14.5px;
+  letter-spacing:.15px;
+  word-break:break-word;
+  display:inline;
+  line-height:1.45;
+  color:var(--text);
+  transition:color .3s ease;
+}
+.name:hover{
+  color:var(--accent-hover);
+}
+.meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:11px;
+  letter-spacing:.3px;
+  color:var(--muted2);
+  margin-top:7px;
+  align-items:center;
+}
+.meta .stat{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  transition:color .3s ease;
+}
+.meta .stat svg{opacity:.65}
+.card:hover .meta .stat{color:var(--muted)}
+.lang{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:var(--muted);
+}
+.lang i{
+  width:7px;height:7px;
+  border-radius:50%;
+  display:inline-block;
+  opacity:.85;
+}
+.desc{
+  margin:0;
+  font-size:13.5px;
+  font-weight:300;
+  color:var(--text);
+  opacity:.82;
+  flex:1;
+  line-height:1.7;
+  letter-spacing:.1px;
+}
+.desc.blank{
+  color:var(--muted2);
+  font-style:italic;
+  opacity:1;
+}
+.topics{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  padding-top:2px;
+}
+.topic{
+  background:color-mix(in srgb, var(--accent) 8%, transparent);
+  border:1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  color:var(--accent-soft);
+  padding:3px 10px;
+  border-radius:999px;
+  font-family:var(--sans);
+  font-weight:400;
+  font-size:10.5px;
+  letter-spacing:.4px;
+  transition:background-color .3s ease, border-color .3s ease, color .3s ease;
+}
+.topic:hover{
+  background:color-mix(in srgb, var(--accent) 16%, transparent);
+  border-color:color-mix(in srgb, var(--accent) 38%, transparent);
+}
+
+/* ============================================================
+   skeleton
+   ============================================================ */
+.card.skel{animation:none}
+.card.skel:hover{
+  transform:none;
+  background:var(--panel);
+  border-color:var(--border);
+  box-shadow:none;
+}
+.sk{
+  background:linear-gradient(90deg,var(--sk1) 25%,var(--sk2) 50%,var(--sk1) 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.8s ease-in-out infinite;
+  border-radius:6px;
+  transition:background-color .5s ease;
+}
+@keyframes shimmer{
+  0%{background-position:200% 0}
+  100%{background-position:-200% 0}
+}
+.sk.avatar{width:38px;height:38px;border-radius:9px;flex:none}
+.sk.line{height:10px}
+.sk.title{height:13px;width:65%}
+.sk.sub{height:9px;width:42%;margin-top:8px}
+
+/* ============================================================
+   messages
+   ============================================================ */
+.warn{
+  background:color-mix(in srgb, var(--warn) 8%, transparent);
+  border:1px solid color-mix(in srgb, var(--warn) 28%, transparent);
+  color:var(--warn);
+  padding:13px 18px;
+  border-radius:12px;
+  margin-bottom:18px;
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:12.5px;
+  line-height:1.8;
+  letter-spacing:.2px;
+}
+
+/* ============================================================
+   footer
+   ============================================================ */
+footer.site{
+  position:relative;
+  z-index:1;
+  max-width:1200px;
+  margin:0 auto;
+  padding:40px 22px 70px;
+  color:var(--muted);
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:12px;
+  line-height:2.1;
+  letter-spacing:.15px;
+}
+footer.site .notes{
+  border-top:1px solid var(--border);
+  padding-top:26px;
+  margin-bottom:26px;
+  transition:border-color .5s ease;
+}
+footer.site b{
+  color:var(--accent-soft);
+  font-weight:500;
+  font-family:var(--display);
+  font-style:italic;
+  letter-spacing:.2px;
+}
+footer.site code{
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:2px 7px;
+  border-radius:6px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--accent-soft);
+  transition:background-color .5s ease, border-color .5s ease;
+}
+.copyright{
+  padding-top:24px;
+  border-top:1px solid var(--border);
+  font-size:11px;
+  color:var(--muted2);
+  letter-spacing:.6px;
+  transition:border-color .5s ease;
+}
+.copyright a{color:var(--muted)}
+.copyright a:hover{color:var(--accent-soft)}
+
+/* ============================================================
+   token dialog
+   ============================================================ */
+#tokenDlg{
+  border:none;
+  background:transparent;
+  padding:0;
+  max-width:none;
+  max-height:none;
+  width:auto;
+  color:var(--text);
+}
+#tokenDlg::backdrop{
+  background:rgba(10,7,18,.62);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+}
+:root[data-theme="light"] #tokenDlg::backdrop{
+  background:rgba(60,45,80,.28);
+}
+#tokenDlg[open]{
+  animation:dlgIn .32s cubic-bezier(.2,.7,.3,1) both;
+}
+#tokenDlg[open]::backdrop{
+  animation:bdIn .32s ease both;
+}
+@keyframes dlgIn{
+  from{opacity:0;transform:translateY(10px) scale(.98)}
+  to{opacity:1;transform:none}
+}
+@keyframes bdIn{from{opacity:0}to{opacity:1}}
+
+.dlg-shell{
+  width:min(560px, calc(100vw - 28px));
+  background:var(--panel);
+  border:1px solid var(--border2);
+  border-radius:18px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  box-shadow:var(--shadow-lg);
+  transition:background-color .5s ease, border-color .5s ease;
+}
+
+.dlg-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding:22px 24px 18px;
+  border-bottom:1px solid var(--border);
+  transition:border-color .5s ease;
+}
+.dlg-head h2{
+  margin:0;
+  font-family:var(--display);
+  font-size:17px;
+  font-weight:500;
+  letter-spacing:.15px;
+  color:var(--text);
+}
+.dlg-head .sub{
+  display:block;
+  font-family:var(--sans);
+  font-size:11.5px;
+  color:var(--muted2);
+  font-weight:300;
+  margin-top:5px;
+  letter-spacing:.2px;
+}
+.dlg-close{
+  background:transparent;
+  border:none;
+  color:var(--muted);
+  padding:6px;
+  border-radius:8px;
+  flex:none;
+}
+.dlg-close:hover{color:var(--text);background:var(--panel2)}
+
+.dlg-body{
+  padding:22px 24px;
+  overflow-y:auto;
+  max-height:min(62vh, 560px);
+  font-size:13.5px;
+  font-weight:300;
+  line-height:1.8;
+  color:var(--text);
+  opacity:.92;
+}
+.dlg-body::-webkit-scrollbar{width:8px}
+.dlg-body::-webkit-scrollbar-track{background:transparent}
+.dlg-body::-webkit-scrollbar-thumb{
+  background:var(--border);
+  border-radius:8px;
+}
+.dlg-body::-webkit-scrollbar-thumb:hover{background:var(--border2)}
+
+.dlg-body p{margin:0 0 16px}
+.dlg-body p:last-child{margin-bottom:0}
+.dlg-body b{color:var(--accent-soft);font-weight:500}
+
+.dlg-sec{margin-bottom:24px}
+.dlg-sec:last-of-type{margin-bottom:18px}
+.dlg-sec h3{
+  margin:0 0 12px;
+  font-family:var(--display);
+  font-size:12px;
+  font-weight:500;
+  font-style:italic;
+  letter-spacing:.4px;
+  color:var(--accent-soft);
+}
+
+.rate{
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  gap:0;
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  font-size:12px;
+  font-weight:300;
+  background:var(--bg2);
+  transition:background-color .5s ease, border-color .5s ease;
+}
+.rate > div{
+  padding:10px 14px;
+  border-bottom:1px solid var(--border);
+}
+.rate > div:nth-last-child(-n+3){border-bottom:none}
+.rate .h{
+  color:var(--muted2);
+  font-weight:400;
+  font-size:10.5px;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  background:var(--panel2);
+}
+.rate .v{
+  text-align:right;
+  color:var(--text);
+  opacity:.85;
+  font-variant-numeric:tabular-nums;
+  font-family:var(--mono);
+  font-size:11.5px;
+}
+.rate .v.good{color:var(--green);opacity:1}
+
+.steps{
+  margin:0;
+  padding:0 0 0 22px;
+  list-style:none;
+  counter-reset:s;
+  font-size:13px;
+  font-weight:300;
+}
+.steps li{
+  counter-increment:s;
+  position:relative;
+  padding:0 0 14px 10px;
+  line-height:1.75;
+}
+.steps li:last-child{padding-bottom:0}
+.steps li::before{
+  content:counter(s);
+  position:absolute;
+  left:-22px;
+  top:2px;
+  width:18px;height:18px;
+  border-radius:50%;
+  background:var(--panel2);
+  border:1px solid var(--border2);
+  color:var(--muted);
+  font-family:var(--sans);
+  font-size:10px;
+  font-weight:500;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:background-color .5s ease, border-color .5s ease;
+}
+.steps code{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  padding:1px 6px;
+  border-radius:5px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--accent-soft);
+}
+.steps a{font-weight:400}
+
+.note{
+  background:color-mix(in srgb, var(--accent) 7%, transparent);
+  border:1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  border-radius:10px;
+  padding:14px 18px;
+  font-size:12.5px;
+  font-weight:300;
+  line-height:1.8;
+  color:var(--text);
+  opacity:.9;
+}
+.note b{color:var(--accent-soft);font-weight:500;opacity:1}
+.note code{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  padding:1px 6px;
+  border-radius:5px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--accent-soft);
+}
+
+.token-field{display:block;margin-top:8px}
+.token-field input{
+  width:100%;
+  padding:11px 14px;
+  font-size:12.5px;
+  font-family:var(--mono);
+  letter-spacing:.5px;
+}
+.token-state{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-top:12px;
+  font-family:var(--sans);
+  font-size:11.5px;
+  font-weight:300;
+  letter-spacing:.2px;
+  color:var(--muted2);
+}
+.token-state .dot{
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--accent-dim);
+  flex:none;
+  transition:background-color .3s ease;
+}
+.token-state.on{color:var(--green)}
+.token-state.on .dot{background:var(--green)}
+.token-state.off .dot{background:var(--accent-dim)}
+
+.dlg-foot{
+  display:flex;
+  gap:9px;
+  justify-content:flex-end;
+  padding:16px 24px;
+  border-top:1px solid var(--border);
+  background:var(--bg2);
+  transition:background-color .5s ease, border-color .5s ease;
+}
+.dlg-foot button{min-width:94px;justify-content:center}
+.dlg-foot .ghost{
+  background:transparent;
+  border-color:transparent;
+  color:var(--muted2);
+  margin-right:auto;
+}
+.dlg-foot .ghost:hover{
+  color:var(--warn);
+  background:transparent;
+  border-color:transparent;
+}
+.dlg-foot .ghost:disabled{color:var(--muted2);opacity:.4}
+
+/* ============================================================
+   reduced motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<section class="disclaimer">
+  <strong>A note before you scroll</strong>
+  This is a plain feed for newly created GitHub repositories. Nothing here is curated,
+  endorsed, or ranked by any community, and star counts are ignored entirely — every
+  project gets the same weight, ordered only by how recently it went live. You will
+  run into rough drafts, weekend experiments, half-finished ideas, and things that
+  probably should not be public yet. That is the point of this place.
+</section>
+
+<header>
+  <div class="hrow">
+    <div class="brand">
+      <span class="globe" aria-hidden="true">
+        <svg viewBox="0 0 100 100">
+          <circle class="g-ring" cx="50" cy="50" r="46"/>
+          <g class="g-lat">
+            <ellipse cx="50" cy="12.6" rx="23" ry="7.9"/>
+            <ellipse cx="50" cy="28.4" rx="39.8" ry="13.6"/>
+            <ellipse cx="50" cy="50" rx="46" ry="15.7"/>
+            <ellipse cx="50" cy="71.6" rx="39.8" ry="13.6"/>
+            <ellipse cx="50" cy="87.4" rx="23" ry="7.9"/>
+          </g>
+          <g class="g-mer">
+            <ellipse cx="50" cy="50" rx="46" ry="43" style="animation-delay:0s"/>
+            <ellipse cx="50" cy="50" rx="46" ry="43" style="animation-delay:-1.5s"/>
+            <ellipse cx="50" cy="50" rx="46" ry="43" style="animation-delay:-3s"/>
+            <ellipse cx="50" cy="50" rx="46" ry="43" style="animation-delay:-4.5s"/>
+            <ellipse cx="50" cy="50" rx="46" ry="43" style="animation-delay:-6s"/>
+            <ellipse cx="50" cy="50" rx="46" ry="43" style="animation-delay:-7.5s"/>
+          </g>
+        </svg>
+      </span>
+      <span>Freshly<span class="mark">88</span> <em>· last 24h on GitHub</em></span>
+    </div>
+
+    <select id="hours" title="Time window">
+      <option value="1">Last hour</option>
+      <option value="6">Last 6 hours</option>
+      <option value="24" selected>Last 24 hours</option>
+      <option value="72">Last 3 days</option>
+    </select>
+
+    <input id="lang" placeholder="Language (Python, Rust…)" style="width:190px" autocomplete="off">
+
+    <select id="sort" title="Order">
+      <option value="fair" selected>Fair shuffle</option>
+      <option value="new">Newest first</option>
+      <option value="stars">Most starred</option>
+      <option value="rising">Rising fast</option>
+    </select>
+
+    <button id="refresh" class="primary">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/>
+      </svg>
+      <span>Refresh</span>
+    </button>
+
+    <button id="themeBtn" class="icon-only theme-toggle" title="Toggle theme" aria-label="Toggle color theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4.2"/>
+        <path d="M12 2.4v2.2"/>
+        <path d="M12 19.4v2.2"/>
+        <path d="M2.4 12h2.2"/>
+        <path d="M19.4 12h2.2"/>
+        <path d="m4.9 4.9 1.6 1.6"/>
+        <path d="m17.5 17.5 1.6 1.6"/>
+        <path d="m4.9 19.1 1.6-1.6"/>
+        <path d="m17.5 6.5 1.6-1.6"/>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/>
+      </svg>
+    </button>
+
+    <button id="tokenBtn" class="icon-only" title="GitHub API token" aria-label="GitHub API token">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="7.5" cy="15.5" r="4.5"/>
+        <path d="M10.5 12.5 21 2"/>
+        <path d="m17 4 3 3"/>
+        <path d="m14 7 3 3"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div id="msg"></div>
+  <div class="bar">
+    <div class="status" id="status">Loading…</div>
+    <button id="more">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14"/><path d="m19 12-7 7-7-7"/>
+      </svg>
+      <span id="moreLabel">Load more</span>
+    </button>
+  </div>
+  <div id="list"></div>
+</main>
+
+<footer class="site">
+  <div class="notes">
+    <b>How this works.</b> We query the GitHub Search API for repositories created inside
+    the selected time window. Two parallel requests go out: one sorted by stars
+    (so genuinely popular projects are not buried) and one sorted by
+    <code>updated</code>, which for a repo a few hours old is basically the same as
+    its creation time. Results are merged and de-duplicated.
+    <br>
+    <b>Why "fair".</b> The default order is a full shuffle. Every repo has the same
+    probability of landing at the top, regardless of who wrote it or how many stars
+    it collected.
+    <br>
+    <b>Rate limits.</b> GitHub gives anonymous visitors 10 search requests per minute.
+    Dropping in a personal access token raises that to 30. The token stays in this
+    browser's localStorage and is sent only to <code>api.github.com</code>.
+  </div>
+
+  <div class="copyright">
+    Copyright © <a href="mailto:mohamed005cheikh@gmail.com">mohamed005cheikh@gmail.com</a> | by MC88
+  </div>
+</footer>
+
+<dialog id="tokenDlg" aria-labelledby="dlgTitle">
+  <form method="dialog" class="dlg-shell">
+
+    <div class="dlg-head">
+      <h2 id="dlgTitle">
+        GitHub API token
+        <span class="sub">Optional. Raises your request limit.</span>
+      </h2>
+      <button type="submit" value="cancel" class="dlg-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="dlg-body">
+
+      <p>
+        GitHub limits how often an anonymous visitor can hit its search API. Without a
+        token you get about <b>10 requests per minute</b>. Freshly88 spends two requests
+        per load — one for the most-starred repos, one for the newest — which means you
+        can browse roughly four pages before you have to wait for the window to reset.
+      </p>
+
+      <div class="dlg-sec">
+        <h3>What changes with a token</h3>
+        <div class="rate">
+          <div class="h">Limit</div>
+          <div class="h">Anonymous</div>
+          <div class="h">With token</div>
+
+          <div>Search requests / min</div>
+          <div class="v">10</div>
+          <div class="v good">30</div>
+
+          <div>General API / hour</div>
+          <div class="v">60</div>
+          <div class="v good">5,000</div>
+
+          <div>Secondary throttling</div>
+          <div class="v">likely</div>
+          <div class="v good">rare</div>
+        </div>
+      </div>
+
+      <div class="dlg-sec">
+        <h3>Creating one</h3>
+        <ol class="steps">
+          <li>
+            Open the
+            <a href="https://github.com/settings/tokens/new?description=Freshly88&scopes=" target="_blank" rel="noopener noreferrer">GitHub token page</a>
+            while signed in.
+          </li>
+          <li>
+            Give it any name — <code>Freshly88</code> is fine.
+          </li>
+          <li>
+            <b>Leave every scope checkbox unchecked.</b> Public data is all we read, so
+            the token needs zero permissions.
+          </li>
+          <li>
+            Set an expiry you are comfortable with. 90 days is a reasonable default.
+          </li>
+          <li>
+            Click <b>Generate token</b> and copy the string starting with
+            <code>ghp_</code> or <code>github_pat_</code>.
+          </li>
+        </ol>
+      </div>
+
+      <div class="dlg-sec">
+        <h3>Storage and safety</h3>
+        <div class="note">
+          The token is kept in your browser's <b>localStorage</b> and attached only to
+          requests going to <code>api.github.com</code>. There is no backend here — no
+          server sees it, and nothing is logged. Because it carries no scopes it can
+          only read public information, so the worst case if it ever leaked is someone
+          borrowing your rate limit. Still, use the <b>Remove</b> button when you are
+          done with a shared machine.
+        </div>
+      </div>
+
+      <div class="dlg-sec">
+        <h3>Your token</h3>
+        <label class="token-field">
+          <input
+            id="tokenInput"
+            type="password"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off"
+            placeholder="ghp_…"
+          >
+        </label>
+        <div class="token-state off" id="tokenState">
+          <span class="dot"></span>
+          <span id="tokenStateText">No token saved</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="dlg-foot">
+      <button type="submit" value="remove" class="ghost" id="dlgRemove">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 6h18"/><path d="M8 6V4h8v2"/>
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>
+        </svg>
+        Remove
+      </button>
+      <button type="submit" value="cancel">Cancel</button>
+      <button type="submit" value="save" class="primary">Save</button>
+    </div>
+
+  </form>
+</dialog>
+
+<script>
+(() => {
+'use strict';
+
+const $  = s => document.querySelector(s);
+const API = 'https://api.github.com/search/repositories';
+const TOKEN_KEY = 'freshly88_token';
+const THEME_KEY = 'freshly88_theme';
+
+/* strip anything that could break out of an attribute or tag */
+const esc = s => String(s ?? '').replace(/[&<>"']/g,
+  c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const LANG_COLORS = {
+  JavaScript:'#f1e05a', TypeScript:'#3178c6', Python:'#3572A5', Rust:'#dea584',
+  Go:'#00ADD8', Java:'#b07219', 'C++':'#f34b7d', C:'#555555', 'C#':'#178600',
+  Ruby:'#701516', PHP:'#4F5D95', Swift:'#F05138', Kotlin:'#A97BFF',
+  HTML:'#e34c26', CSS:'#563d7c', Shell:'#89e051', Dart:'#00B4AB',
+  Vue:'#41b883', Svelte:'#ff3e00', Zig:'#ec915c', Lua:'#000080',
+  Elixir:'#6e4a7e', Haskell:'#5e5086', Nix:'#7e7eff', Scala:'#c22d40'
+};
+
+const ICONS = {
+  star: '<svg viewBox="0 0 16 16" width="11" height="11" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>',
+  fork: '<svg viewBox="0 0 16 16" width="11" height="11" fill="currentColor"><path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"/></svg>',
+  clock:'<svg viewBox="0 0 16 16" width="11" height="11" fill="currentColor"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm7-3.25v2.992l2.028.812a.75.75 0 0 1-.557 1.392l-2.5-1A.751.751 0 0 1 7 8.25v-3.5a.75.75 0 0 1 1.5 0Z"/></svg>'
+};
+
+function timeAgo(iso){
+  const s = (Date.now() - new Date(iso)) / 1000;
+  if (s < 60)    return 'just now';
+  if (s < 3600)  return Math.floor(s/60) + 'm ago';
+  if (s < 86400) return Math.floor(s/3600) + 'h ago';
+  return Math.floor(s/86400) + 'd ago';
+}
+
+const state = {
+  repos: new Map(),
+  view: [],
+  page: 0,
+  total: 0,
+  loading: false,
+  exhausted: false,
+  rateLeft: null,
+  rateReset: null
+};
+
+const getToken = () => localStorage.getItem(TOKEN_KEY) || '';
+
+function apiHeaders(){
+  const h = {
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28'
+  };
+  const t = getToken();
+  if (t) h.Authorization = 'Bearer ' + t;
+  return h;
+}
+
+async function search({ sort, page, lang, hours }){
+  const since = new Date(Date.now() - hours * 3600e3)
+                  .toISOString().slice(0, 19) + 'Z';
+
+  let q = 'created:>' + since + ' fork:false';
+  if (lang) q += ' language:' + lang;
+
+  const url = API
+    + '?q=' + encodeURIComponent(q)
+    + '&sort=' + sort
+    + '&order=desc&per_page=100&page=' + page;
+
+  const res = await fetch(url, { headers: apiHeaders() });
+
+  const left  = res.headers.get('x-ratelimit-remaining');
+  const reset = res.headers.get('x-ratelimit-reset');
+  if (left  !== null) state.rateLeft  = +left;
+  if (reset !== null) state.rateReset = +reset;
+
+  if (res.status === 401){
+    localStorage.removeItem(TOKEN_KEY);
+    throw new Error('That token was rejected by GitHub. It has been removed — try again without it, or create a new one from the key button.');
+  }
+  if (res.status === 403 || res.status === 429){
+    const mins = reset ? Math.ceil((+reset * 1000 - Date.now()) / 60000) : null;
+    throw new Error(
+      'Rate limit reached' + (mins ? ' — resets in about ' + mins + ' min' : '') +
+      '. Add a GitHub token (key icon) to raise it from 10 to 30 requests per minute.'
+    );
+  }
+  if (res.status === 422) throw new Error('Bad query — check the language name.');
+  if (!res.ok)            throw new Error('Request failed: HTTP ' + res.status);
+
+  return res.json();
+}
+
+function showSkeletons(n){
+  const one = () => `
+    <article class="card skel">
+      <div class="top">
+        <div class="sk avatar"></div>
+        <div class="info">
+          <div class="sk title"></div>
+          <div class="sk sub"></div>
+        </div>
+      </div>
+      <div class="sk line" style="width:96%"></div>
+      <div class="sk line" style="width:78%"></div>
+      <div class="sk line" style="width:52%"></div>
+    </article>`;
+  $('#list').innerHTML = Array.from({ length: n }, one).join('');
+}
+
+async function load(reset = false){
+  if (state.loading) return;
+  state.loading = true;
+
+  const lang  = $('#lang').value.trim();
+  const hours = +$('#hours').value;
+
+  if (reset){
+    state.repos.clear();
+    state.view = [];
+    state.page = 0;
+    state.exhausted = false;
+    state.total = 0;
+    $('#msg').innerHTML = '';
+    showSkeletons(8);
+    updateUI('Loading…');
+  } else {
+    updateUI('Loading more…');
+  }
+
+  try {
+    const jobs = [];
+
+    if (state.page === 0){
+      jobs.push(search({ sort: 'stars', page: 1, lang, hours }));
+    }
+
+    state.page++;
+    jobs.push(search({ sort: 'updated', page: state.page, lang, hours }));
+
+    const results = await Promise.all(jobs);
+    let added = 0;
+
+    for (const r of results){
+      if (typeof r.total_count === 'number') state.total = r.total_count;
+      for (const item of (r.items || [])){
+        if (!state.repos.has(item.id)){
+          state.repos.set(item.id, item);
+          added++;
+        }
+      }
+    }
+
+    if (results.every(r => (r.items || []).length < 100)){
+      state.exhausted = true;
+    }
+
+    if (added === 0 && state.page > 1){
+      state.exhausted = true;
+    }
+
+    applySort();
+  } catch (err){
+    $('#msg').innerHTML = '<div class="warn">' + esc(err.message) + '</div>';
+    if (state.view.length === 0){
+      $('#list').innerHTML = '';
+      updateUI('Could not load');
+    } else {
+      updateUI();
+    }
+  } finally {
+    state.loading = false;
+    updateUI();
+  }
+}
+
+function applySort(){
+  const mode = $('#sort').value;
+  const arr  = [...state.repos.values()];
+
+  if (mode === 'fair'){
+    for (let i = arr.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+    }
+  } else if (mode === 'new'){
+    arr.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+  } else if (mode === 'stars'){
+    arr.sort((a, b) => b.stargazers_count - a.stargazers_count);
+  } else if (mode === 'rising'){
+    const score = r => {
+      const hrs = Math.max((Date.now() - new Date(r.created_at)) / 3600e3, 0.5);
+      return r.stargazers_count / hrs;
+    };
+    arr.sort((a, b) => score(b) - score(a));
+  }
+
+  state.view = arr;
+  render();
+}
+
+function card(r){
+  const color = LANG_COLORS[r.language] || '#8b949e';
+  const lang  = r.language
+    ? '<span class="lang"><i style="background:' + color + '"></i>' + esc(r.language) + '</span>'
+    : '';
+
+  const topics = (r.topics || []).slice(0, 5)
+    .map(t => '<span class="topic">' + esc(t) + '</span>').join('');
+
+  const desc = r.description
+    ? '<p class="desc">' + esc(r.description) + '</p>'
+    : '<p class="desc blank">No description.</p>';
+
+  const avatar = r.owner && r.owner.avatar_url ? r.owner.avatar_url : '';
+
+  return '<article class="card">'
+    + '<div class="top">'
+      + '<img src="' + esc(avatar) + '" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'">'
+      + '<div class="info">'
+        + '<a class="name" href="' + esc(r.html_url) + '" target="_blank" rel="noopener noreferrer">' + esc(r.full_name) + '</a>'
+        + '<div class="meta">'
+          + lang
+          + '<span class="stat">' + ICONS.star + r.stargazers_count.toLocaleString('en') + '</span>'
+          + '<span class="stat">' + ICONS.fork + r.forks_count.toLocaleString('en') + '</span>'
+          + '<span class="stat">' + ICONS.clock + timeAgo(r.created_at) + '</span>'
+        + '</div>'
+      + '</div>'
+    + '</div>'
+    + desc
+    + (topics ? '<div class="topics">' + topics + '</div>' : '')
+    + '</article>';
+}
+
+function render(){
+  $('#list').innerHTML = state.view.map(card).join('');
+}
+
+function updateUI(extra){
+  const shown = state.view.length;
+  const total = state.repos.size;
+
+  let txt = extra
+    ? '<b>' + esc(extra) + '</b>'
+    : '<b>' + shown.toLocaleString('en') + '</b> repos shown';
+
+  if (!extra && total !== shown){
+    txt += ' <span class="dot"></span> ' + total.toLocaleString('en') + ' collected';
+  }
+  if (state.total){
+    txt += ' <span class="dot"></span> ~' + Math.min(state.total, 1000).toLocaleString('en') + ' matching';
+  }
+  if (state.rateLeft !== null){
+    txt += ' <span class="dot"></span> ' + state.rateLeft + ' requests left';
+  }
+
+  $('#status').innerHTML = txt;
+  $('#more').disabled = state.loading || state.exhausted;
+  $('#refresh').disabled = state.loading;
+  $('#refresh').classList.toggle('loading', state.loading);
+
+  $('#moreLabel').textContent = state.exhausted ? 'No more results' : 'Load more';
+}
+
+/* ---------- theme toggle ---------- */
+
+function setTheme(theme){
+  document.documentElement.setAttribute('data-theme', theme);
+  try{ localStorage.setItem(THEME_KEY, theme); }catch(e){}
+}
+
+$('#themeBtn').addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  setTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+/* follow OS changes if user hasn't picked one manually */
+try{
+  const mq = window.matchMedia('(prefers-color-scheme: light)');
+  const handler = e => {
+    if (!localStorage.getItem(THEME_KEY)){
+      document.documentElement.setAttribute('data-theme', e.matches ? 'light' : 'dark');
+    }
+  };
+  if (mq.addEventListener) mq.addEventListener('change', handler);
+  else if (mq.addListener) mq.addListener(handler);
+}catch(e){}
+
+/* ---------- token dialog ---------- */
+
+const dlg   = $('#tokenDlg');
+const input = $('#tokenInput');
+
+function paintTokenState(){
+  const has = !!getToken();
+  const box = $('#tokenState');
+  box.className = 'token-state ' + (has ? 'on' : 'off');
+  $('#tokenStateText').textContent = has
+    ? 'Token active · 30 search requests per minute'
+    : 'No token saved · 10 search requests per minute';
+  $('#dlgRemove').disabled = !has;
+}
+
+$('#tokenBtn').addEventListener('click', () => {
+  input.value = '';
+  paintTokenState();
+  dlg.showModal();
+  setTimeout(() => input.focus(), 80);
+});
+
+dlg.addEventListener('close', () => {
+  const action = dlg.returnValue;
+
+  if (action === 'remove'){
+    localStorage.removeItem(TOKEN_KEY);
+    load(true);
+    return;
+  }
+
+  if (action === 'save'){
+    const t = input.value.trim();
+    if (t){
+      localStorage.setItem(TOKEN_KEY, t);
+      load(true);
+    }
+  }
+});
+
+/* ---------- events ---------- */
+
+$('#refresh').addEventListener('click', () => load(true));
+$('#more').addEventListener('click', () => load(false));
+$('#sort').addEventListener('change', applySort);
+
+$('#lang').addEventListener('change', () => load(true));
+$('#hours').addEventListener('change', () => load(true));
+
+load(true);
+
+})();
+</script>
+</body>
+</html>
