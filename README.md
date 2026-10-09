@@ -1,113 +1,197 @@
-# Freshly88
+<h2 id="français">🇫🇷 Version française</h2>
 
-> A fair feed for newly created GitHub repositories.
+<div align="center">
 
-Every repo gets the same chance. No stars, no followers, no ranking. Just what was published in the last 24 hours, shuffled and shown to you.
+# 🎯 Freshly88 — MC88
 
----
+**Un flux équitable pour les dépôts GitHub récents**
 
-## The problem
+</div>
 
-GitHub is built around stars. The more you have, the more visible you become — and the more visible you become, the more stars you collect. It's a loop that rewards people who are already known.
-
-If you publish your first repository today, you are invisible. Not because it's bad, but because it hasn't had time to accumulate anything yet. By the time it does, it's already competing against projects with thousands of stars, and it loses.
-
-The result is that most people never see what's actually being built right now. They see what was built two years ago and already won.
-
-Freshly88 is an attempt to fix that, at least for a small window of time.
+🌍 **Langues :** [Français](#français) · [English](#english)
 
 ---
 
-## What it does
+> **En bref** — Freshly88 affiche les dépôts GitHub publics créés récemment, sans classement par étoiles.
+> 
+> **Mélange aléatoire · Filtre par langue · Sans compte**
 
-It collects every public repository created within a recent time window — the last hour, 6 hours, 24 hours, or 3 days — and presents them in a plain, equal feed.
+<!-- 
+## 📸 Aperçu
 
-There is no popularity ranking. A repo with zero stars appears next to one with two hundred. The default order is a complete random shuffle, which means every repository in the pool has the same probability of being the first thing you see.
-
-You will find good projects. You will also find rough drafts, empty repos, weekend experiments, half-finished ideas, and things that probably should not have been made public. That is not a bug. That is the entire point — the feed shows you what exists, not what has been curated.
-
----
-
-## Why "fair"
-
-Most discovery tools filter before they show you anything. They decide what is worth your attention based on signals like stars, forks, or account history — and those signals favor people who already have an audience.
-
-Freshly88 does not make that decision for you. It shows you everything and lets you decide. The only thing it sorts by is time: how recently a repository was published.
-
-This means the feed is noisier than GitHub's trending page. It also means you occasionally find something genuinely new — a project from a first-time contributor, a niche tool nobody has noticed, a prototype that is weeks away from being useful. You will not find those things on a ranked list, because they have not earned their ranking yet.
+<div align="center">
+  <img src="https://github.com/mohamed005cheikh-rgb/[REPO]/raw/main/images/Sc1.png" alt="[Description]" width="100%" />
+</div>
 
 ---
 
-## Features
+🔗 **Démo en ligne :** [https://...](https://...)
+📦 **Code source :** [https://github.com/mohamed005cheikh-rgb/[REPO]](https://github.com/mohamed005cheikh-rgb/[REPO])
+-->
 
-### Time windows
+## 👋 Bienvenue
 
-Choose how far back you want to look: the last hour, the last 6 hours, the last 24 hours, or the last 3 days. Shorter windows surface fewer, fresher repos. Longer windows give you more to browse, but a higher chance of running into abandoned experiments.
-
-### Four ways to sort
-
-- **Fair shuffle** — the default. Every repo has an equal chance of appearing first.
-- **Newest first** — most recently created at the top.
-- **Most starred** — when you want to see what's already gaining attention.
-- **Rising fast** — repos that are picking up stars quickly relative to how long they've existed. A repo created four hours ago with thirty stars ranks higher than one created two days ago with fifty.
-
-### Language filter
-
-Enter any language GitHub recognizes and the feed narrows to just those repos. Useful if you're looking for something specific — Rust projects, Elixir projects, whatever you're curious about.
-
-### No account required
-
-You can browse without signing in, without connecting a GitHub account, and without giving up any personal information. The site has no tracking, no analytics, and no server. It runs entirely in your browser.
-
-### Optional token
-
-GitHub limits how often a visitor can request data. Without a token, you can browse a few pages before you have to wait for the limit to reset. If you add a personal access token — the key icon in the header — the limit goes up, and you can keep browsing longer. The token is stored only on your device and is never sent anywhere except GitHub itself.
+Freshly88 affiche les dépôts GitHub publics créés récemment. Il n'y a pas de classement par étoiles. L'ordre par défaut est un mélange aléatoire. Vous choisissez une fenêtre de temps et une langue, puis vous faites défiler.
 
 ---
 
-## How to use it
+## ✨ Ce que vous trouverez
 
-1. Open the site.
-2. Pick a time window and a language (or leave the language empty to see everything).
-3. Scroll through the feed. Click on any repository that looks interesting — it opens on GitHub.
-4. Click **Load more** at the bottom to fetch another batch.
-5. Change the sort order whenever you want a different view of the same pool of repos.
+**Fenêtres de temps.**  
+Une heure, 6 heures, 24 heures ou 3 jours. Chaque fenêtre montre les dépôts créés dans cet intervalle.
 
-That's it. No signup, no onboarding, no tutorial.
+**Quatre tris.**  
+Mélange équitable, plus récents, plus étoilés, en progression rapide.
 
----
+**Filtre par langue.**  
+Entrez une langue reconnue par GitHub pour ne voir que ces dépôts.
 
-## What you will and won't find
+**Sans compte.**  
+Aucune inscription, aucun suivi, aucune analyse. Tout tourne dans le navigateur.
 
-**You will find:**
-
-- First-time projects from new developers
-- Weekend experiments and prototypes
-- Documentation sites, configuration files, personal websites
-- Tools and libraries that nobody has starred yet
-- Occasional gems that would otherwise go unnoticed
-
-**You won't find:**
-
-- A ranked list of "the best" repositories
-- Curated or hand-picked projects
-- Recommendations based on your history
-- Anything filtered by quality, effort, or usefulness
-
-The feed is a raw slice of what's being published on GitHub right now. What you do with that is up to you.
+**Jeton optionnel.**  
+Un jeton GitHub personnel augmente la limite de requêtes. Il reste sur votre appareil.
 
 ---
 
-## A note on expectations
+## 🧭 Comment ça marche
 
-This is not a tool for finding the best repositories. It is a tool for finding the newest ones.
+**1. Ouvrez le site.**  
+La page charge la liste des dépôts récents.
 
-If you're looking for a well-established library, you're better off on GitHub's search or on a curated list somewhere else. If you're curious what people are building today — including the failed experiments and the half-finished ideas — this is for you.
+**2. Choisissez une fenêtre.**  
+Une heure, 6 heures, 24 heures ou 3 jours.
 
-The value here is not in what's polished. It's in what's unfinished.
+**3. Ajoutez une langue si besoin.**  
+Laissez vide pour tout voir.
+
+**4. Faites défiler.**  
+Cliquez sur un dépôt pour l'ouvrir sur GitHub. Load more charge la suite.
+
+C'est tout.
 
 ---
 
-## Copyright
+## 🛠️ Petits coups de main
 
-Copyright © [mohamed005cheikh@gmail.com](mailto:mohamed005cheikh@gmail.com) | by MC88
+**Pourquoi je vois des dépôts vides ?**  
+Le flux montre tout ce qui a été publié, y compris les brouillons et les essais. C'est le principe.
+
+**À quoi sert le jeton ?**  
+GitHub limite le nombre de requêtes par visiteur. Un jeton personnel augmente cette limite.
+
+**Le jeton est-il envoyé quelque part ?**  
+Non. Il est stocké sur votre appareil et envoyé uniquement à GitHub.
+
+**Qu'est-ce que "Rising fast" ?**  
+Les dépôts qui gagnent des étoiles vite par rapport à leur âge. Un dépôt de 4 heures avec 30 étoiles passe avant un dépôt de 2 jours avec 50.
+
+---
+
+<br /><br /><br />
+
+<h2 id="english">🇬🇧 English version</h2>
+
+<div align="center">
+
+# 🎯 Freshly88 — MC88
+
+**A fair feed for newly created GitHub repositories**
+
+</div>
+
+🌍 **Languages:** [Français](#français) · [English](#english)
+
+---
+
+> **In short** — Freshly88 shows recently created public GitHub repositories, with no star ranking.
+> 
+> **Random shuffle · Language filter · No account**
+
+<!-- 
+## 📸 Preview
+
+<div align="center">
+  <img src="https://github.com/mohamed005cheikh-rgb/[REPO]/raw/main/images/Sc1.png" alt="[Description]" width="100%" />
+</div>
+
+---
+
+🔗 **Live demo:** [https://...](https://...)
+📦 **Source code:** [https://github.com/mohamed005cheikh-rgb/[REPO]](https://github.com/mohamed005cheikh-rgb/[REPO])
+-->
+
+## 👋 Welcome
+
+Freshly88 shows recently created public GitHub repositories. There is no star ranking. The default order is a random shuffle. You pick a time window and a language, then you scroll.
+
+---
+
+## ✨ What you'll find
+
+**Time windows.**  
+One hour, 6 hours, 24 hours or 3 days. Each window shows repositories created in that range.
+
+**Four sorts.**  
+Fair shuffle, newest first, most starred, rising fast.
+
+**Language filter.**  
+Enter any language GitHub recognizes to narrow the feed to those repositories.
+
+**No account.**  
+No signup, no tracking, no analytics. Everything runs in the browser.
+
+**Optional token.**  
+A personal GitHub token raises the request limit. It stays on your device.
+
+---
+
+## 🧭 How it works
+
+**1. Open the site.**  
+The page loads the list of recent repositories.
+
+**2. Pick a time window.**  
+One hour, 6 hours, 24 hours or 3 days.
+
+**3. Add a language if needed.**  
+Leave it empty to see everything.
+
+**4. Scroll.**  
+Click a repository to open it on GitHub. Load more fetches the next batch.
+
+That's it.
+
+---
+
+## 🛠️ A little help
+
+**Why do I see empty repositories?**  
+The feed shows everything that was published, including drafts and experiments. That is the point.
+
+**What is the token for?**  
+GitHub limits how often a visitor can request data. A personal token raises that limit.
+
+**Is the token sent anywhere?**  
+No. It is stored on your device and sent only to GitHub.
+
+**What is "Rising fast"?**  
+Repositories gaining stars quickly relative to their age. A 4-hour repo with 30 stars ranks above a 2-day repo with 50.
+
+---
+
+<div align="center">
+
+### 📞 Une question, une idée ? / A question, an idea?
+
+[![Email](https://img.shields.io/badge/Email-mohamed005cheikh@gmail.com-d14836?style=flat-square&logo=gmail&logoColor=white)](mailto:mohamed005cheikh@gmail.com)
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-+222_30_72_64_75-25D366?style=flat-square&logo=whatsapp&logoColor=white)](https://wa.me/22230726475)
+[![GitHub](https://img.shields.io/badge/GitHub-MC--MC88-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/MC-MC88)
+
+<br />
+
+*Équitable pour tous / Fair for all*
+
+<sub>MIT License · © 2026 Mohamed Cheikh — MC88</sub>
+
+</div>
